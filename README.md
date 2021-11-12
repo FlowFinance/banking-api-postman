@@ -1,10 +1,10 @@
 # banking-api-postman
 
-Here you will find Postman's files to getting start faster using Banking API.
+Here you will find Postman's files to get started using the Banking API faster.
 
-All of endpoints available here, are also documented at your official documentation, you can take a look here [https://flowfinance.readme.io/](https://flowfinance.readme.io/)
+All of the endpoints are available here but also documented in our official documentation. You can take a look at https://flowfinance.readme.io/
 
-Be sure that you have credentials to access the apis, all endpoints need to be authenticated.
+All endpoints need to be authenticated, so make sure you have credentials to access the Banking APIs. 
 
 ## environment
 
