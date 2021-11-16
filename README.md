@@ -19,6 +19,10 @@ Don't worry about `originator_access_token`, this value will be automatically fi
 
 If you're an originator, you should import the file `Flow Finance - banking api [originator].postman_collection.json`.
 
+## issuer
+
+If you're an issuer, you should impot the file `Flow Finance - banking api [issuer].postman_collection.json`.
+
 ## authentication
 
 Before using the api endpoints, you need to request a valid authentication token, to do this, you need to invoke the collection request named `update access token` inside of `authentication` folder. This request will fill the environment variable used to authenticate the requests.
