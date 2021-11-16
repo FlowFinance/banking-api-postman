@@ -1,0 +1,859 @@
+{
+	"info": {
+		"_postman_id": "994d1161-8bbf-4990-bc42-77f6da4e71dd",
+		"name": "Flow Finance - banking api [issuer]",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "update access token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"issuer_access_token\", pm.response.json().access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{issuer_client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{issuer_client_id}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "partners",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{auth_server_host}}/oauth2/token",
+							"host": [
+								"{{auth_server_host}}"
+							],
+							"path": [
+								"oauth2",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "originators",
+			"item": [
+				{
+					"name": "list originators",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/originators",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"originators"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create originator",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"legal_name\": \"Originator SA\",\n    \"taxpayer_id\": \"07147467000108\",\n    \"phone\": {\n        \"country_code\": \"55\",\n        \"area_code\": \"48\",\n        \"number\": \"999547383\"\n    },\n    \"email_address\": \"originator@originator.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/originators",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"originators"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update originator",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"legal_name\": \"Originator SA\",\n    \"taxpayer_id\": \"07147467000108\",\n    \"phone\": {\n        \"country_code\": \"55\",\n        \"area_code\": \"48\",\n        \"number\": \"999547383\"\n    },\n    \"email_address\": \"originator@originator.com\",\n    \"address\": {\n        \"country_code\": \"BRA\",\n        \"city\": \"Originator city\",\n        \"district\": \"SC\",\n        \"street_name\": \"OI\",\n        \"postal_code\": \"88860000\",\n        \"state_code\": \"SC\",\n        \"street_number\": \"194\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/originators/d77d622b-253a-4bc1-bda0-e3dfa62a1949",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"originators",
+								"d77d622b-253a-4bc1-bda0-e3dfa62a1949"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list originator's credentials",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"legal_name\": \"Fernando Moraes SA\",\n    \"taxpayer_id\": \"07147467000108\",\n    \"phone_number\": \"48999547383\",\n    \"email_address\": \"fernando@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/originators/74834245-8134-48e1-bb85-d7f90a65e9de/credentials",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"originators",
+								"74834245-8134-48e1-bb85-d7f90a65e9de",
+								"credentials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create originator's credential",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/originators/d77d622b-253a-4bc1-bda0-e3dfa62a1949/credentials",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"originators",
+								"d77d622b-253a-4bc1-bda0-e3dfa62a1949",
+								"credentials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get originator's credential secret",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/originators/74834245-8134-48e1-bb85-d7f90a65e9de/credentials/6sma093ruddmur1fit3a9rd1ha",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"originators",
+								"74834245-8134-48e1-bb85-d7f90a65e9de",
+								"credentials",
+								"6sma093ruddmur1fit3a9rd1ha"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "list products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/products",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/products/0676363e-f102-4039-8137-ad9c9b3217cc",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"products",
+								"0676363e-f102-4039-8137-ad9c9b3217cc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"agreement_template\": {\n        \"id\": \"48f3ee2d-8631-4d68-aea5-1375176501ba\"\n    },\n    \"name\": \"Crédito Consignado Privado\",\n    \"regulator_product_code\": \"1\",\n    \"borrower_type\": \"PERSON\",\n    \"interest_type\": \"PRE\",\n    \"min_interest_rate\": 0.001,\n    \"max_interest_rate\": 0.2,\n    \"min_num_payments\": 1,\n    \"max_num_payments\": 60,\n    \"variables_configuration\": {\n        \"application\": [\n            {\n                \"name\": \"custom_variables.employer_address\",\n                \"required\": true\n            },\n            {\n                \"name\": \"custom_variables.employer_legal_name\",\n                \"required\": true\n            },\n            {\n                \"name\": \"custom_variables.employer_taxpayer_id\",\n                \"required\": true\n            }\n        ],\n        \"borrower\": {\n            \"person\": [\n                {\n                    \"name\": \"id_document\",\n                    \"required\": true\n                },\n                {\n                    \"name\": \"address\",\n                    \"required\": true\n                },\n                {\n                    \"name\": \"birth_date\",\n                    \"required\": true\n                },\n                {\n                    \"name\": \"marital_status\",\n                    \"required\": true\n                },\n                {\n                    \"name\": \"email_address\",\n                    \"required\": true\n                },\n                {\n                    \"name\": \"custom_variables.admission_date\",\n                    \"required\": false\n                },\n                {\n                    \"name\": \"custom_variables.employee_id\",\n                    \"required\": false\n                },\n                {\n                    \"name\": \"custom_variables.job_title\",\n                    \"required\": false\n                }\n            ],\n            \"business\": [],\n            \"person_document\": [\n                {\n                    \"type\": \"NATIONAL_ID\",\n                    \"required\": false\n                },\n                {\n                    \"type\": \"DRIVERS_LICENSE\",\n                    \"required\": false\n                },\n                {\n                    \"type\": \"PROOF_OF_INCOME\",\n                    \"required\": true\n                }\n            ],\n            \"business_document\": []\n        }\n    },\n    \"status\": \"OK\",\n    \"schedule_type\": \"MONTHLY\",\n    \"iof_zero\": false,\n    \"created_at\": \"2021-11-11T20:32:28.319862Z\",\n    \"updated_at\": \"2021-11-12T18:02:14.149302Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/products",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product variables",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Produto\",\n    \"regulator_product_code\": \"CDC\",\n    \"borrower_type\": \"PERSON\",\n    \"schedule_type\": \"DAILY\",\n    \"interest_type\": \"PRE\",\n    \"min_interest_rate\": 1,\n    \"max_interest_rate\": 2,\n    \"min_num_payments\": 1,\n    \"max_num_payments\": 12,\n    \"agreement_template\": {\n        \"id\": \"da9bbf43-d2a8-4a62-9824-b151e9c6730f\"\n    },\n    \"variables_configuration\": {\n        \"borrower\": {\n            \"person\": [\n                { \"name\": \"mothers_name\", \"required\": true }\n            ],\n            \"person_document\": [\n            ]\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/products/0676363e-f102-4039-8137-ad9c9b3217cc/variables",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"products",
+								"0676363e-f102-4039-8137-ad9c9b3217cc",
+								"variables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"agreement_template\": {\n        \"id\": \"43b53332-b799-470d-9db6-22f701b99737\"\n    },\n    \"name\": \"Produto\",\n    \"regulator_product_code\": \"CDC\",\n    \"borrower_type\": \"PERSON\",\n    \"interest_type\": \"PRE\",\n    \"min_interest_rate\": 1,\n    \"max_interest_rate\": 2,\n    \"min_num_payments\": 1,\n    \"max_num_payments\": 12,\n    \"variables_configuration\": {\n        \"application\": [],\n        \"borrower\": {\n            \"person\": [],\n            \"business\": [],\n            \"person_document\": [],\n            \"business_document\": []\n        }\n    },\n    \"status\": \"OK\",\n    \"schedule_type\": \"DAILY\",\n    \"iof_zero\": false,\n    \"created_at\": \"2021-11-12T17:48:52.336305Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/products/0676363e-f102-4039-8137-ad9c9b3217cc",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"products",
+								"0676363e-f102-4039-8137-ad9c9b3217cc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "agreement templates",
+			"item": [
+				{
+					"name": "list agreement templates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/agreement-templates",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"agreement-templates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create agreement template",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "CCB",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "CCB",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Minha CCB",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/fernandomoraes/Downloads/Cedula_de_Credito_Bancario_-_Credito_Consignado_Privado.docx"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/agreement-templates",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"agreement-templates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "preview agreement template",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user",
+								"value": "8846fac7-337a-4ca7-9754-e3c044430bb6",
+								"type": "text"
+							},
+							{
+								"key": "issuer",
+								"value": "8846fac7-337a-4ca7-9754-e3c044430bb6",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Minha CCB",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "CCB",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Minha CCB",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/fernandomoraes/Downloads/andre.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/banking/issuer/agreement-templates",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"agreement-templates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update agreement template",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Minha CCB123123",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "CCB",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Minha CCB",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/fernandomoraes/Downloads/Cedula_de_Credito_Bancario_-_Credito_Consignado_Privado.docx"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/agreement-templates/43b53332-b799-470d-9db6-22f701b99737",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"agreement-templates",
+								"43b53332-b799-470d-9db6-22f701b99737"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "variables",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/variables",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"variables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Person first name\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/variables/2df2c3e9-4669-4df7-8434-e279d1f27dfc",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"variables",
+								"2df2c3e9-4669-4df7-8434-e279d1f27dfc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"job_title\",\n    \"type\": \"TEXT\",\n    \"relation\": \"PERSON\",\n    \"description\": \"Job title\",\n    \"display_name\": \"Job title\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/variables",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"variables"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "fundings",
+			"item": [
+				{
+					"name": "list fundings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/fundings",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"fundings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create funding",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"legal_name\": \"Funding SA\",\n    \"taxpayer_id\": \"07147467000108\",\n    \"phone\": {\n        \"country_code\": \"55\",\n        \"area_code\": \"48\",\n        \"number\": \"999547383\"\n    },\n    \"email_address\": \"funding@funding.com\",\n    \"address\": {\n        \"country_code\": \"BRA\",\n        \"city\": \"Funding City\",\n        \"street_name\": \"Siderúrgica\",\n        \"district\": \"1\",\n        \"postal_code\": \"88860000\",\n        \"state_code\": \"SC\",\n        \"street_number\": \"194\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/fundings",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"fundings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update funding",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "user",
+								"value": "8846fac7-337a-4ca7-9754-e3c044430bb6",
+								"type": "text"
+							},
+							{
+								"key": "issuer",
+								"value": "8846fac7-337a-4ca7-9754-e3c044430bb6",
+								"type": "text"
+							},
+							{
+								"key": "scope",
+								"value": "api.banking/issuer",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"legal_name\": \"Funding Originator SA\",\n    \"taxpayer_id\": \"07147467000108\",\n    \"phone\": {\n        \"country_code\": \"55\",\n        \"area_code\": \"48\",\n        \"number\": \"999547383\"\n    },\n    \"email_address\": \"funding@funding.com\",\n    \"address\": {\n        \"country_code\": \"BRA\",\n        \"city\": \"Funding City\",\n        \"district\": \"SC\",\n        \"street_name\": \"OI\",\n        \"postal_code\": \"88860000\",\n        \"state_code\": \"SC\",\n        \"street_number\": \"194\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/banking/issuer/fundings/145d302f-4224-4499-a56e-3bd50c020c6d",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"fundings",
+								"145d302f-4224-4499-a56e-3bd50c020c6d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
