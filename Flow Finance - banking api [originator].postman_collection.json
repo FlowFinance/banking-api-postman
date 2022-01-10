@@ -94,14 +94,15 @@
 							}
 						],
 						"url": {
-							"raw": "{{api_host}}/banking/originator/products",
+							"raw": "{{api_host}}/banking/originator/products/",
 							"host": [
 								"{{api_host}}"
 							],
 							"path": [
 								"banking",
 								"originator",
-								"products"
+								"products",
+								""
 							]
 						}
 					},
@@ -173,6 +174,42 @@
 					"response": []
 				},
 				{
+					"name": "render application",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{originator_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/originator/applications/2f6928c7-3dcc-4c28-9d3b-e47fcf1a1593/render",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"originator",
+								"applications",
+								"2f6928c7-3dcc-4c28-9d3b-e47fcf1a1593",
+								"render"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get application by id",
 					"request": {
 						"method": "GET",
@@ -184,7 +221,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{api_host}}/banking/originator/applications/7d7697e4-0b21-447b-af62-ee9ab72416f2",
+							"raw": "{{api_host}}/banking/originator/applications/36a821bb-66bd-4c64-a808-3a5bedffebbf",
 							"host": [
 								"{{api_host}}"
 							],
@@ -192,7 +229,7 @@
 								"banking",
 								"originator",
 								"applications",
-								"7d7697e4-0b21-447b-af62-ee9ab72416f2"
+								"36a821bb-66bd-4c64-a808-3a5bedffebbf"
 							]
 						}
 					},
@@ -211,7 +248,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"product\": {\n        \"id\": \"5a8b1e8e-6be3-49ee-bc26-176d4358437d\"\n    },\n    \"finance_fee\": 100,\n    \"disbursement_date\": \"2020-11-11\",\n    \"issue_date\": \"2021-11-11\",\n    \"tac_amount\": 100,\n    \"borrower\": {\n        \"id\": \"c8daa512-84f3-4fb7-bd5c-5ccb734bdc72\"\n    },\n    \"num_payments\": 4,\n    \"interest_rate\": 1,\n    \"first_payment_date\": \"2021-12-01\",\n    \"requested_amount\": 19889.50,\n    \"funding\": {\n        \"id\": \"145d302f-4224-4499-a56e-3bd50c020c6d\"\n    }\n}",
+							"raw": "{\n    \"product\": {\n        \"id\": \"c5fe9b97-9597-4a4e-ac00-845815c58c2b\"\n    },\n    \"finance_fee\": 100,\n    \"disbursement_date\": \"2021-12-23\",\n    \"issue_date\": \"2021-12-23\",\n    \"tac_amount\": 100,\n    \"borrower\": {\n        \"id\": \"427ae1ce-cb5e-4095-b021-a065a36f9a6a\"\n    },\n    \"num_payments\": 24,\n    \"interest_rate\": 0.005,\n    \"first_payment_date\": \"2022-01-23\",\n    \"requested_amount\": 19889.50,\n    \"signature_collect_method\": \"EMAIL\",\n    \"guarantors\": [\n        {\n            \"guarantor_id\": \"27dc83df-d20e-42ad-8480-5504b335eb9e\",\n            \"type\": \"PERSON\"\n        }\n    ],\n    \"co_signers1\": [\n        {\n            \"co_signer_id\": \"e49edfab-57fe-49d8-9d3e-a04c3434bbfd\",\n            \"type\": \"PERSON\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -256,7 +293,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{api_host}}/banking/originator/applications/01a41ca3-3ee9-4e47-872d-1f1a5c8e22fb/agreement",
+							"raw": "{{api_host}}/banking/originator/applications/c68b361f-c3a5-4a92-a304-086289003153/agreement",
 							"host": [
 								"{{api_host}}"
 							],
@@ -264,8 +301,47 @@
 								"banking",
 								"originator",
 								"applications",
-								"01a41ca3-3ee9-4e47-872d-1f1a5c8e22fb",
+								"c68b361f-c3a5-4a92-a304-086289003153",
 								"agreement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "download application signed agreement",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{originator_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product\": {\n        \"id\": \"f2b23ebc-feae-4fcd-854e-f7986db2e889\"\n    },\n    \"finance_fee\": 100,\n    \"disbursement_date\": \"2021-10-28\",\n    \"tac_amount\": 100,\n    \"borrower\": {\n        \"id\": \"faaeeabe-be46-4196-9dee-fd0bc422c483\"\n    },\n    \"num_payments\": 4,\n    \"interest_rate\": 1,\n    \"first_payment_date\": \"2021-10-29\",\n    \"requested_amount\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/originator/applications/3486fee9-b153-4297-8c18-45743ac5c975/signed-agreement",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"originator",
+								"applications",
+								"3486fee9-b153-4297-8c18-45743ac5c975",
+								"signed-agreement"
 							]
 						}
 					},
@@ -295,7 +371,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{api_host}}/banking/originator/applications/6d48851c-4efb-4c4d-8da8-2d9b3b3b50c1/signatures",
+							"raw": "{{api_host}}/banking/originator/applications/6db80a9f-44da-4f88-8667-7b55dacf6770/signatures",
 							"host": [
 								"{{api_host}}"
 							],
@@ -303,7 +379,7 @@
 								"banking",
 								"originator",
 								"applications",
-								"6d48851c-4efb-4c4d-8da8-2d9b3b3b50c1",
+								"6db80a9f-44da-4f88-8667-7b55dacf6770",
 								"signatures"
 							]
 						}
@@ -323,7 +399,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"ip_address\": \"199.999.999\",\n        \"user_agent\": \"fernando\",\n        \"person\": {\n            \"id\": \"aedf8ff3-83b3-4842-9c77-3deb8a539165\"\n        },\n        \"signed_in\": \"2021-10-31T22:25:39.87467Z\"\n    }",
+							"raw": "    {\n        \"ip_address\": \"199.999.999\",\n        \"user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36\",\n        \"person\": {\n            \"id\": \"bf691eb6-c5ae-445d-ab27-4dc46710229b\"\n        },\n        \"signed_at\": \"2021-10-31T22:25:39.87467Z\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -331,7 +407,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{api_host}}/banking/originator/applications/6d48851c-4efb-4c4d-8da8-2d9b3b3b50c1/signatures",
+							"raw": "{{api_host}}/banking/originator/applications/cf7a9c0d-4e03-4807-be85-f5c3ac4c4529/signatures",
 							"host": [
 								"{{api_host}}"
 							],
@@ -339,8 +415,44 @@
 								"banking",
 								"originator",
 								"applications",
-								"6d48851c-4efb-4c4d-8da8-2d9b3b3b50c1",
+								"cf7a9c0d-4e03-4807-be85-f5c3ac4c4529",
 								"signatures"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "issued applications",
+			"item": [
+				{
+					"name": "list issued applications",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{originator_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/originator/issued-applications?disbursement_date=2021-11-24",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"originator",
+								"issued-applications"
+							],
+							"query": [
+								{
+									"key": "disbursement_date",
+									"value": "2021-11-24"
+								}
 							]
 						}
 					},
@@ -364,7 +476,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"taxpayer_id\": \"072033456999\",\n    \"nationality\": \"Brasileiro\",\n    \"pep\": false,\n    \"full_name\": \"João da Silva\",\n    \"phone\": {\n        \"country_code\": \"55\",\n        \"area_code\": \"48\",\n        \"number\": \"999548383\"\n    },\n    \"occupation\": \"Worker\",\n    \"birth_date\": \"1990-07-21\",\n    \"marital_status\": \"SINGLE\",\n    \"email_address\": \"joao@silva.com\",\n    \"mothers_name\": \"Fernanda\",\n    \"marital_property_system\": \"NO_COMMUNION\",    \n    \"sex\": \"MALE\",\n    \"address\": {\n        \"street_number\": \"1\",\n        \"street_name\": \"1\",\n        \"postal_code\": \"88860000\",\n        \"district\": \"1\",\n        \"city\": \"1\",\n        \"state_code\": \"SC\",\n        \"country_code\": \"BRA\"\n    }\n}",
+							"raw": "{\n    \"taxpayer_id\": \"18680573051\",\n    \"nationality\": \"Brasileiro\",\n    \"pep\": false,\n    \"full_name\": \"Mariane Nola\",\n    \"phone\": {\n        \"country_code\": \"55\",\n        \"area_code\": \"48\",\n        \"number\": \"999547383\"\n    },\n    \"occupation\": \"Empreendedor\",\n    \"birth_date\": \"1990-07-21\",\n    \"marital_status\": \"SINGLE\",\n    \"email_address\": \"fernando@flowfinance.com\",\n    \"mothers_name\": \"Ines Scaravonatto\",\n    \"marital_property_system\": \"NO_COMMUNION\",    \n    \"sex\": \"MALE\",\n    \"id_document\": {\n        \"issue_date\": \"1990-07-21\",\n        \"issuer\": \"SSP/SC\",\n        \"number\": \"99945\",\n        \"type\": \"RG\"\n    },\n    \"address\": {\n        \"street_number\": \"194\",\n        \"street_name\": \"Siderúrgica\",\n        \"postal_code\": \"88860000\",\n        \"district\": \"1\",\n        \"city\": \"Siderópolis\",\n        \"state_code\": \"SC\",\n        \"country_code\": \"BRA\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -398,7 +510,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"taxpayer_id\": \"07033456999\",\n    \"nationality\": \"Brazillia333n2ss2s22\",\n    \"pep\": false,\n    \"full_name\": \"Fernando Morae1s\",\n    \"phone\": {\n        \"number\": \"999547383\",\n        \"area_code\": \"48\",\n        \"country_code\": \"55\"\n    },\n    \"document\": {\n        \"type\": \"RG\",\n        \"number\": \"1\",\n        \"issuer\": \"SSP\",\n        \"issue_date\": \"2030-10-01\"\n    },\n    \"occupation\": \"flower\",\n    \"birth_date\": \"1990-07-21\",\n    \"marital_status\": \"SINGLE\",\n    \"email_address\": \"fernandosdemoraes@gmail.com\",\n    \"mothers_name\": \"Fernanda\",\n    \"drivers_license_number\": \"11111111111\",\n    \"marital_property_system\": \"NO_COMMUNION\",\n    \"id_doc_number\": \"1\",\n    \"id_doc_issuer\": \"1\",\n    \"sex\": \"MALE\",\n    \"pix\": {\n       \"key_type\": \"TAXPAYER_ID\",\n       \"key\": \"######\"\n    },\n    \"external_bank_account\": {\n        \"bank_branch\": 1,\n        \"bank_code\": 1,\n        \"bank_account\": 1,\n        \"bank_account_digit\": 1\n    },\n    \"address\": {\n        \"street_number\": \"1\",\n        \"street_name\": \"1\",\n        \"postal_code\": \"88860000\",\n        \"district\": \"1\",\n        \"city\": \"1\",\n        \"state_code\": \"SC\",\n        \"country_code\": \"BRA\",\n        \"extra_info\": \"Fim do mundo\"\n    }\n}",
+							"raw": "{\n            \"id\": \"27dc83df-d20e-42ad-8480-5504b335eb9e\",\n            \"taxpayer_id\": \"18680573051\",\n            \"nationality\": \"Brasileiro\",\n            \"pep\": false,\n            \"full_name\": \"Mariane Nola\",\n            \"phone\": {\n                \"country_code\": \"55\",\n                \"area_code\": \"48\",\n                \"number\": \"999547383\"\n            },\n            \"occupation\": \"Empreendedor\",\n            \"birth_date\": \"1990-07-21\",\n            \"marital_status\": \"SINGLE\",\n            \"email_address\": \"fernando@flowfinance.com.br\",\n            \"mothers_name\": \"Ines Scaravonatto\",\n            \"marital_property_system\": \"NO_COMMUNION\",\n            \"id_document\": {\n                \"number\": \"99945\",\n                \"issuer\": \"SSP/SC\",\n                \"issue_date\": \"1990-07-21\",\n                \"type\": \"RG\"\n            },\n            \"sex\": \"MALE\",\n            \"address\": {\n                \"street_name\": \"Siderúrgica\",\n                \"street_number\": 194,\n                \"postal_code\": \"88860000\",\n                \"district\": \"1\",\n                \"city\": \"Siderópolis\",\n                \"state_code\": \"SC\",\n                \"country_code\": \"BRA\",\n                \"extra_info\": null\n            },\n            \"pix\": null,\n            \"external_bank_account\": null,\n            \"custom_variables\": {},\n            \"created_at\": \"2021-12-23T05:11:27.299588Z\"\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -406,7 +518,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{api_host}}/banking/originator/persons/c8daa512-84f3-4fb7-bd5c-5ccb734bdc72",
+							"raw": "{{api_host}}/banking/originator/persons/27dc83df-d20e-42ad-8480-5504b335eb9e",
 							"host": [
 								"{{api_host}}"
 							],
@@ -414,7 +526,7 @@
 								"banking",
 								"originator",
 								"persons",
-								"c8daa512-84f3-4fb7-bd5c-5ccb734bdc72"
+								"27dc83df-d20e-42ad-8480-5504b335eb9e"
 							]
 						}
 					},
@@ -448,6 +560,197 @@
 			]
 		},
 		{
+			"name": "business",
+			"item": [
+				{
+					"name": "create business",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{originator_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"legal_name\": \"João da Silva ME\",\n    \"taxpayer_id\": \"25444230000170\",\n    \"phone\": {\n        \"country_code\": \"55\",\n        \"area_code\": \"49\",\n        \"number\": \"999547856\"\n    },\n    \"incorporation_type\": \"MEI\",\n    \"name\": \"João Silva\",\n    \"email_address\": \"joao@silva.com.br\",\n    \"foundation_date\": \"2010-10-10\",\n    \"tax_regime\": \"SIMPLE\",\n    \"address\": {\n        \"country_code\": \"BRA\",\n        \"district\": \"district\",\n        \"city\": \"city\",\n        \"street_name\": \"street_name\",\n        \"postal_code\": \"88860000\",\n        \"state_code\": \"st\",\n        \"street_number\": \"123\"\n    },\n    \"pix\": {\n        \"key_type\": \"PHONE_NUMBER\",\n        \"key\": \"88888\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/originator/business",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"originator",
+								"business"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update business",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{originator_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"legal_name\": \"João da Silva ME\",\n    \"taxpayer_id\": \"25444230000170\",\n    \"phone\": {\n        \"country_code\": \"55\",\n        \"area_code\": \"49\",\n        \"number\": \"9995478563\"\n    },\n    \"incorporation_type\": \"MEI\",\n    \"name\": \"João Silvas\",\n    \"email_address\": \"joao@silva.com.br\",\n    \"foundation_date\": \"2010-10-10\",\n    \"tax_regime\": \"SIMPLE\",\n    \"address\": {\n        \"country_code\": \"BRA\",\n        \"district\": \"district\",\n        \"city\": \"city\",\n        \"street_name\": \"street_name\",\n        \"postal_code\": \"88860000\",\n        \"state_code\": \"st\",\n        \"street_number\": \"123\"\n    },\n    \"pix\": {\n        \"key_type\": \"PHONE_NUMBER\",\n        \"key\": \"88888\"\n    },\n    \"external_bank_account\": {\n        \"bank_branch\": \"1\",\n        \"bank_code\": \"1\",\n        \"bank_account\": \"1\",\n        \"bank_account_digit\": \"1\"\n    },\n    \"custom_variables\": {\n        \"job_title\": \"Job title\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/originator/business/a357429c-59fd-4a39-92a5-0d2e8cf9c52a",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"originator",
+								"business",
+								"a357429c-59fd-4a39-92a5-0d2e8cf9c52a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list business",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{originator_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/originator/business",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"originator",
+								"business"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list business relations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{originator_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/originator/business/ef66494b-d66e-4ffc-8996-b4ae00869380/relations/",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"originator",
+								"business",
+								"ef66494b-d66e-4ffc-8996-b4ae00869380",
+								"relations",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove business relation",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{originator_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/originator/business/ef66494b-d66e-4ffc-8996-b4ae00869380/relations/ef66494b-d66e-4ffc-8996-b4ae00869380",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"originator",
+								"business",
+								"ef66494b-d66e-4ffc-8996-b4ae00869380",
+								"relations",
+								"ef66494b-d66e-4ffc-8996-b4ae00869380"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create business relations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{originator_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"PARTNER\",\n    \"person\": {\n        \"id\": \"02b4210b-2529-42a4-9ef3-0c2db98dc167\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/originator/business/ef66494b-d66e-4ffc-8996-b4ae00869380/relations",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"originator",
+								"business",
+								"ef66494b-d66e-4ffc-8996-b4ae00869380",
+								"relations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "documents person",
 			"item": [
 				{
@@ -466,13 +769,13 @@
 							"formdata": [
 								{
 									"key": "type",
-									"value": "NATIONAL_ID",
+									"value": "PROOF_OF_INCOME",
 									"type": "text"
 								},
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/Users/fernandomoraes/Downloads/votorantim.jpeg"
+									"src": "/Users/fernandomoraes/Downloads/Calculos_2.pdf"
 								},
 								{
 									"key": "description",
@@ -483,7 +786,8 @@
 								{
 									"key": "observation",
 									"value": "Minha identidade",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							],
 							"options": {
@@ -493,7 +797,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{api_host}}/banking/originator/persons/5755ec32-f663-4d2d-9674-3d05031dac61/documents",
+							"raw": "{{api_host}}/banking/originator/persons/02b4210b-2529-42a4-9ef3-0c2db98dc167/documents",
 							"host": [
 								"{{api_host}}"
 							],
@@ -501,7 +805,7 @@
 								"banking",
 								"originator",
 								"persons",
-								"5755ec32-f663-4d2d-9674-3d05031dac61",
+								"02b4210b-2529-42a4-9ef3-0c2db98dc167",
 								"documents"
 							]
 						}
@@ -617,6 +921,233 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "documents business",
+			"item": [
+				{
+					"name": "create business document",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{originator_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "type",
+									"value": "BALANCE_SHEETS",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/fernandomoraes/Downloads/votorantim.jpeg"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "observation",
+									"value": "Minha identidade",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/originator/business/a357429c-59fd-4a39-92a5-0d2e8cf9c52a/documents",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"originator",
+								"business",
+								"a357429c-59fd-4a39-92a5-0d2e8cf9c52a",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list persons documents",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{originator_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/originator/business/a357429c-59fd-4a39-92a5-0d2e8cf9c52a/documents",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"originator",
+								"business",
+								"a357429c-59fd-4a39-92a5-0d2e8cf9c52a",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update persons document",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{originator_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "type",
+									"value": "BALANCE_SHEETS",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/fernandomoraes/Downloads/votorantim.jpeg"
+								},
+								{
+									"key": "observation",
+									"value": "Minha identidade antiga",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/originator/business/a357429c-59fd-4a39-92a5-0d2e8cf9c52a/documents/51f8949d-7144-4a95-a964-4b6524ce600b",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"originator",
+								"business",
+								"a357429c-59fd-4a39-92a5-0d2e8cf9c52a",
+								"documents",
+								"51f8949d-7144-4a95-a964-4b6524ce600b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete persons document",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{originator_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/originator/persons/46440dcd-ef80-4efc-9095-34a1a634cb6d/documents/19f64a04-6cd8-42eb-a468-e44bc841adbe",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"originator",
+								"persons",
+								"46440dcd-ef80-4efc-9095-34a1a634cb6d",
+								"documents",
+								"19f64a04-6cd8-42eb-a468-e44bc841adbe"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "billing",
+			"item": [
+				{
+					"name": "get billing summary",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{originator_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/originator/billing-summary?period=2021-11",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"originator",
+								"billing-summary"
+							],
+							"query": [
+								{
+									"key": "period",
+									"value": "2021-11"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
