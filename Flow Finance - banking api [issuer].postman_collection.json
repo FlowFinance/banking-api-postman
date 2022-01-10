@@ -120,7 +120,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"legal_name\": \"Originator SA\",\n    \"taxpayer_id\": \"07147467000108\",\n    \"phone\": {\n        \"country_code\": \"55\",\n        \"area_code\": \"48\",\n        \"number\": \"999547383\"\n    },\n    \"email_address\": \"originator@originator.com\"\n}",
+							"raw": "{\n    \"id\": \"e500e90e-35e2-4868-bbfd-2af61cf81157\",\n    \"legal_name\": \"VALLY BANK S.A.\",\n    \"taxpayer_id\": \"41543944000192\",\n    \"phone\": {\n        \"country_code\": \"55\",\n        \"area_code\": \"61\",\n        \"number\": \"981673414\"\n    },\n    \"email_address\": \"romam_adm@hotmail.com\",\n    \"address\": {\n        \"street_name\": \"Q Sia Quadra 5-C, Lote \",\n        \"street_number\": 22,\n        \"postal_code\": \"71200055\",\n        \"district\": \"Zona Industrial (Guara)\",\n        \"city\": \"Brasília\",\n        \"state_code\": \"DF\",\n        \"country_code\": \"BRA\",\n        \"extra_info\": \"Parte C, Sala 201\"\n    },\n    \"created_at\": \"2021-12-08T14:23:25.232764Z\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -227,7 +227,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{api_host}}/banking/issuer/originators/d77d622b-253a-4bc1-bda0-e3dfa62a1949/credentials",
+							"raw": "{{api_host}}/banking/issuer/originators/169e889b-7e12-4488-8f06-f63a083a0b80/credentials",
 							"host": [
 								"{{api_host}}"
 							],
@@ -235,8 +235,83 @@
 								"banking",
 								"issuer",
 								"originators",
-								"d77d622b-253a-4bc1-bda0-e3dfa62a1949",
+								"169e889b-7e12-4488-8f06-f63a083a0b80",
 								"credentials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save billing settings",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"underwriting_range_fee\": [\n        {\n            \"upper_limit\": null,\n            \"fee\": 10\n        },\n        {\n            \"upper_limit\": 20353.18,\n            \"fee\": 0.02\n        },\n        {\n            \"upper_limit\": 0.1,\n            \"fee\": 2\n        },\n        {\n            \"upper_limit\": 0.9,\n            \"fee\": 2\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/originators/40e2bb2e-8770-45c8-b91e-3f6751de69b2/billing-settings",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"originators",
+								"40e2bb2e-8770-45c8-b91e-3f6751de69b2",
+								"billing-settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get billing settings",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"underwriting_range_fee\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/originators/40e2bb2e-8770-45c8-b91e-3f6751de69b2/billing-settings",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"originators",
+								"40e2bb2e-8770-45c8-b91e-3f6751de69b2",
+								"billing-settings"
 							]
 						}
 					},
@@ -339,7 +414,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"agreement_template\": {\n        \"id\": \"48f3ee2d-8631-4d68-aea5-1375176501ba\"\n    },\n    \"name\": \"Crédito Consignado Privado\",\n    \"regulator_product_code\": \"1\",\n    \"borrower_type\": \"PERSON\",\n    \"interest_type\": \"PRE\",\n    \"min_interest_rate\": 0.001,\n    \"max_interest_rate\": 0.2,\n    \"min_num_payments\": 1,\n    \"max_num_payments\": 60,\n    \"variables_configuration\": {\n        \"application\": [\n            {\n                \"name\": \"custom_variables.employer_address\",\n                \"required\": true\n            },\n            {\n                \"name\": \"custom_variables.employer_legal_name\",\n                \"required\": true\n            },\n            {\n                \"name\": \"custom_variables.employer_taxpayer_id\",\n                \"required\": true\n            }\n        ],\n        \"borrower\": {\n            \"person\": [\n                {\n                    \"name\": \"id_document\",\n                    \"required\": true\n                },\n                {\n                    \"name\": \"address\",\n                    \"required\": true\n                },\n                {\n                    \"name\": \"birth_date\",\n                    \"required\": true\n                },\n                {\n                    \"name\": \"marital_status\",\n                    \"required\": true\n                },\n                {\n                    \"name\": \"email_address\",\n                    \"required\": true\n                },\n                {\n                    \"name\": \"custom_variables.admission_date\",\n                    \"required\": false\n                },\n                {\n                    \"name\": \"custom_variables.employee_id\",\n                    \"required\": false\n                },\n                {\n                    \"name\": \"custom_variables.job_title\",\n                    \"required\": false\n                }\n            ],\n            \"business\": [],\n            \"person_document\": [\n                {\n                    \"type\": \"NATIONAL_ID\",\n                    \"required\": false\n                },\n                {\n                    \"type\": \"DRIVERS_LICENSE\",\n                    \"required\": false\n                },\n                {\n                    \"type\": \"PROOF_OF_INCOME\",\n                    \"required\": true\n                }\n            ],\n            \"business_document\": []\n        }\n    },\n    \"status\": \"OK\",\n    \"schedule_type\": \"MONTHLY\",\n    \"iof_zero\": false,\n    \"created_at\": \"2021-11-11T20:32:28.319862Z\",\n    \"updated_at\": \"2021-11-12T18:02:14.149302Z\"\n}",
+							"raw": "{\n            \"id\": \"e4a3f48b-11e4-4bd9-a1b3-18c4f1b097c2\",\n            \"agreement_template\": {\n                \"id\": \"f122abe1-b305-44e6-be47-8e058f763b1b\"\n            },\n            \"name\": \"Crédito Consignado fernando PJ\",\n            \"regulator_product_code\": \"1\",\n            \"borrower_type\": \"BUSINESS\",\n            \"interest_type\": \"PRE\",\n            \"min_interest_rate\": null,\n            \"max_interest_rate\": null,\n            \"min_num_payments\": null,\n            \"max_num_payments\": null,\n            \"status\": \"OK\",\n            \"schedule_type\": \"MONTHLY\",\n            \"iof_zero\": false,\n            \"created_at\": \"2021-11-23T11:54:45.838772Z\",\n            \"updated_at\": \"2021-12-15T11:51:40.08743Z\"\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -384,7 +459,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{api_host}}/banking/issuer/products/0676363e-f102-4039-8137-ad9c9b3217cc/variables",
+							"raw": "{{api_host}}/banking/issuer/products/5939f5eb-87da-47c6-b533-e4e03c8c0ad3/variables",
 							"host": [
 								"{{api_host}}"
 							],
@@ -392,7 +467,7 @@
 								"banking",
 								"issuer",
 								"products",
-								"0676363e-f102-4039-8137-ad9c9b3217cc",
+								"5939f5eb-87da-47c6-b533-e4e03c8c0ad3",
 								"variables"
 							]
 						}
@@ -412,7 +487,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"agreement_template\": {\n        \"id\": \"43b53332-b799-470d-9db6-22f701b99737\"\n    },\n    \"name\": \"Produto\",\n    \"regulator_product_code\": \"CDC\",\n    \"borrower_type\": \"PERSON\",\n    \"interest_type\": \"PRE\",\n    \"min_interest_rate\": 1,\n    \"max_interest_rate\": 2,\n    \"min_num_payments\": 1,\n    \"max_num_payments\": 12,\n    \"variables_configuration\": {\n        \"application\": [],\n        \"borrower\": {\n            \"person\": [],\n            \"business\": [],\n            \"person_document\": [],\n            \"business_document\": []\n        }\n    },\n    \"status\": \"OK\",\n    \"schedule_type\": \"DAILY\",\n    \"iof_zero\": false,\n    \"created_at\": \"2021-11-12T17:48:52.336305Z\"\n}",
+							"raw": "{\n    \"id\": \"e4a3f48b-11e4-4bd9-a1b3-18c4f1b097c2\",\n    \"agreement_template\": {\n        \"id\": \"f122abe1-b305-44e6-be47-8e058f763b1b\"\n    },\n    \"name\": \"Crédito Consignado fernando\",\n    \"regulator_product_code\": \"1\",\n    \"borrower_type\": \"PERSON\",\n    \"interest_type\": \"PRE\",\n    \"min_interest_rate\": null,\n    \"max_interest_rate\": null,\n    \"min_num_payments\": null,\n    \"max_num_payments\": null,\n    \"variables_configuration\": {\n        \"application\": [],\n        \"borrower\": {\n            \"person\": [{\n                    \"name\": \"birth_date\",\n                    \"required\": true\n                }],\n            \"business\": [],\n            \"person_document\": [\n                { \"type\": \"PROOF_OF_INCOME\", \"required\": true }\n            ],\n            \"business_document\": []\n        },\n        \"guarantors\": {\n            \"person\": [\n                {\n                    \"name\": \"birth_date\",\n                    \"required\": true\n                },\n                {\n                    \"name\": \"marital_status\",\n                    \"required\": true\n                }\n            ]\n        }\n    },\n    \"status\": \"OK\",\n    \"schedule_type\": \"MONTHLY\",\n    \"iof_zero\": false,\n    \"originators\": [],\n    \"created_at\": \"2021-11-23T11:54:45.838772Z\",\n    \"updated_at\": \"2021-12-08T18:39:22.360414Z\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -420,7 +495,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{api_host}}/banking/issuer/products/0676363e-f102-4039-8137-ad9c9b3217cc",
+							"raw": "{{api_host}}/banking/issuer/products/e4a3f48b-11e4-4bd9-a1b3-18c4f1b097c2",
 							"host": [
 								"{{api_host}}"
 							],
@@ -428,7 +503,74 @@
 								"banking",
 								"issuer",
 								"products",
-								"0676363e-f102-4039-8137-ad9c9b3217cc"
+								"e4a3f48b-11e4-4bd9-a1b3-18c4f1b097c2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save product originatos metadata",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cod_produto\": \"3\",\n    \"cod_fundo\": \"7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/products/c5fe9b97-9597-4a4e-ac00-845815c58c2b/originators/d77d622b-253a-4bc1-bda0-e3dfa62a1949/metadata",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"products",
+								"c5fe9b97-9597-4a4e-ac00-845815c58c2b",
+								"originators",
+								"d77d622b-253a-4bc1-bda0-e3dfa62a1949",
+								"metadata"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product originatos metadata",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/products/e4a3f48b-11e4-4bd9-a1b3-18c4f1b097c2/originators/40e2bb2e-8770-45c8-b91e-3f6751de69b2/metadata",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"products",
+								"e4a3f48b-11e4-4bd9-a1b3-18c4f1b097c2",
+								"originators",
+								"40e2bb2e-8770-45c8-b91e-3f6751de69b2",
+								"metadata"
 							]
 						}
 					},
@@ -465,6 +607,33 @@
 					"response": []
 				},
 				{
+					"name": "download agreement template file",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/agreement-templates/0b1f31e2-14c6-4722-9863-3bf156309808/file",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"agreement-templates",
+								"0b1f31e2-14c6-4722-9863-3bf156309808",
+								"file"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "create agreement template",
 					"request": {
 						"method": "POST",
@@ -480,7 +649,7 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "CCB",
+									"value": "CCB123",
 									"type": "text"
 								},
 								{
@@ -496,7 +665,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/Users/fernandomoraes/Downloads/Cedula_de_Credito_Bancario_-_Credito_Consignado_Privado.docx"
+									"src": "/Users/fernandomoraes/Downloads/Cedula de Crédito Bancario - Crédito Consignado Privado.docx"
 								}
 							]
 						},
@@ -590,7 +759,7 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "Minha CCB123123",
+									"value": "CCB",
 									"type": "text"
 								},
 								{
@@ -600,18 +769,18 @@
 								},
 								{
 									"key": "description",
-									"value": "Minha CCB",
+									"value": "[LinKapital] Cédula de Crédito Bancário",
 									"type": "text"
 								},
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/Users/fernandomoraes/Downloads/Cedula_de_Credito_Bancario_-_Credito_Consignado_Privado.docx"
+									"src": "/Users/fernandomoraes/Downloads/CCB - Capital de Giro - LinKapital (6).docx"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{api_host}}/banking/issuer/agreement-templates/43b53332-b799-470d-9db6-22f701b99737",
+							"raw": "{{api_host}}/banking/issuer/agreement-templates/12221c4e-383d-473a-99ee-66df2dd69736",
 							"host": [
 								"{{api_host}}"
 							],
@@ -619,7 +788,7 @@
 								"banking",
 								"issuer",
 								"agreement-templates",
-								"43b53332-b799-470d-9db6-22f701b99737"
+								"12221c4e-383d-473a-99ee-66df2dd69736"
 							]
 						}
 					},
@@ -703,7 +872,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"job_title\",\n    \"type\": \"TEXT\",\n    \"relation\": \"PERSON\",\n    \"description\": \"Job title\",\n    \"display_name\": \"Job title\"\n}",
+							"raw": "{\n    \"nam1e\": \"job_titl1e\",\n    \"type\": \"TEXT\",\n    \"relation\": \"BUSINESS\",\n    \"description\": \"Job title\",\n    \"display_name\": \"Job title\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -828,6 +997,149 @@
 								"issuer",
 								"fundings",
 								"145d302f-4224-4499-a56e-3bd50c020c6d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "backoffice settings",
+			"item": [
+				{
+					"name": "save backoffice settings",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"credential\": {\n        \"username\": \"HOMOLOGACAO\",\n        \"password\": \"ABCDE09876\"\n    },\n    \"api_host\": \"https://consignado.biorc.com.br/dev\",\n    \"version_identifier\": \"RBM_BIORC\",\n    \"metadata\": {\n        \"api_user\": {\n            \"value\": \"12345678910\",\n            \"sensitive\": true\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/backoffice-settings",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"backoffice-settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get backoffice settings",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"credential\": {\n        \"username\": \"HOMOLOGACAO\",\n        \"password\": \"ABCDE09876\"\n    },\n    \"api_host\": \"https://consignado.biorc.com.br/dev\",\n    \"version_identifier\": \"RBM_BIORC\",\n    \"metadata\": {\n        \"api_user\": {\n            \"value\": \"12345678910\",\n            \"sensitive\": true\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/backoffice-settings",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"backoffice-settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enable backoffice",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"legal_name\": \"Funding SA\",\n    \"taxpayer_id\": \"07147467000108\",\n    \"phone\": {\n        \"country_code\": \"55\",\n        \"area_code\": \"48\",\n        \"number\": \"999547383\"\n    },\n    \"email_address\": \"funding@funding.com\",\n    \"address\": {\n        \"country_code\": \"BRA\",\n        \"city\": \"Funding City\",\n        \"street_name\": \"Siderúrgica\",\n        \"district\": \"1\",\n        \"postal_code\": \"88860000\",\n        \"state_code\": \"SC\",\n        \"street_number\": \"194\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/backoffice-settings/enable",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"backoffice-settings",
+								"enable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "disable backoffice",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{issuer_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"legal_name\": \"Funding SA\",\n    \"taxpayer_id\": \"07147467000108\",\n    \"phone\": {\n        \"country_code\": \"55\",\n        \"area_code\": \"48\",\n        \"number\": \"999547383\"\n    },\n    \"email_address\": \"funding@funding.com\",\n    \"address\": {\n        \"country_code\": \"BRA\",\n        \"city\": \"Funding City\",\n        \"street_name\": \"Siderúrgica\",\n        \"district\": \"1\",\n        \"postal_code\": \"88860000\",\n        \"state_code\": \"SC\",\n        \"street_number\": \"194\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/banking/issuer/backoffice-settings/disable",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"banking",
+								"issuer",
+								"backoffice-settings",
+								"disable"
 							]
 						}
 					},
